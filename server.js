@@ -13,8 +13,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true, // true для портов 465, false для 587
   auth: {
-    user: "info.komilfotours@mail.ru", // Ваша почта
-    pass: "QdBLHXVtLzx0tkzcH4TX", // Ваш пароль
+    user: "", // Ваша почта
+    pass: "", // Ваш пароль
   },
 });
 const DATA_FILE_NAME = "data-orders.json";
