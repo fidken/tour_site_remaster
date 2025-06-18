@@ -1,0 +1,42 @@
+doctype html
+html
+  head
+    title Калининградская области с "Комильфо"
+    link(rel='stylesheet', href='/file-request.css') 
+    link(rel='stylesheet', href='/layout.css') 
+    link(rel='stylesheet', href='/standart.css')
+    link(rel='stylesheet', href='/header.css')
+    link(rel='stylesheet', href='/footer.css')
+    link(rel='stylesheet', href='/registration.css')
+    link(rel='stylesheet', href='/login.css')
+    link(rel='stylesheet', href='/cart.css')
+    link(rel='stylesheet', href='/profile.css')
+    link(rel="stylesheet" href="/profile.css")
+    link(rel="stylesheet" href="/popup.css")
+    link(rel="stylesheet" href="/filter.css")
+    link(rel="stylesheet" href="/tours-edit.css")
+    link(rel="stylesheet" href="/users-edit.css")
+    link(rel='stylesheet', href='/tour-card.css')
+    link(rel='stylesheet', href='/tour-details.css')
+    link(rel='stylesheet', href='/booking.css')
+  body
+    header
+      include header.pug
+    main
+      block content
+    footer 
+      include footer.pug
+    //- include file-request-viewer.pug 
+
+    script(src='/slider.js')
+    script(src='/load-tours.js')
+    //- script(src='/render-tours.js')
+    script(src="/file-request.js")
+    script(src="/index.js")
+    script(src="/popup.js")
+    script(src="/admin-tours.js") 
+    script(src="/admin-users.js") 
+    //- script(src="/admin-tours-edit.js")
+    //- script(src="/admin-profiles-edit.js")
+    //- script(src="/admin-orders.js")
+    script(src="/filter.js")

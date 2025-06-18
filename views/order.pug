@@ -1,0 +1,33 @@
+extends layout 
+
+block content 
+    h1 Карточка заказа #{order.id}
+
+    form(action="/update" method="POST")
+      input(type="hidden" name="id" value=order.id)
+
+      p
+        label Статус заказа:
+        select(name="status")
+          option(value="Новый" selected=order.status == 'Новый') Новый
+          option(value="Подтверждено" selected=order.status == 'Подтверждено') Подтверждено
+          option(value="Отменено" selected=order.status == 'Отменено') Отменено
+
+      p
+        label Статус оплаты:
+        select(name="payment_status")
+          option(value="Ожидаем оплаты" selected=order.payment_status == 'Ожидаем оплаты') Ожидаем оплаты
+          option(value="Оплата получена" selected=order.payment_status == 'Оплата получена') Оплата получена
+          option(value="Оплата отклонена" selected=order.payment_status == 'Оплата отклонена') Оплата отклонена
+
+      p
+        label Итоговая сумма:
+        input(type="text" name="total_amount" value=order.total_amount || '')
+
+      p
+        label Комментарии:
+        textarea(name="public_comment") #{order.public_comment}
+
+      button(type="submit") Сохранить изменения
+
+    a(href='/') Вернуться к списку заказов

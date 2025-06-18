@@ -1,0 +1,7 @@
+extends layout 
+
+block content 
+    h1 Профиль пользователя
+    p Имя: #{user.name}
+    p Email: #{user.email}
+    a(href='/') Вернуться к списку заказов

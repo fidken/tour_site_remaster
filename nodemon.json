@@ -1,0 +1,5 @@
+{
+    "exec": "cls && node server.js",
+    "watch": ["server.js", "data/"]
+  }
+  

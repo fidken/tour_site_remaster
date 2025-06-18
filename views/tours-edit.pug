@@ -1,0 +1,89 @@
+extends layout
+
+block content
+  #tour-management
+    h1 Управление турами
+    h2 Добавить тур
+    form#add-tour-form
+
+      label(for="add-name") Название тура:
+      input(type="text", id="add-name", name="name", required)
+
+      //- label(for="add-start_date") Дата:
+      //- input(type="date", id="add-start_date", name="start_date", required)
+
+      label(for="add-duration") Длительность:
+      input(type="number", id="add-duration", name="duration", min="1", required)
+
+      label(for="add-short-description") Краткое описание:
+      textarea#add-short-description(name="short_description", required)
+
+      label(for="add-long-description") Полное описание:
+      textarea#add-long-description(name="long_description", required)
+
+      label(for="add-operator") Оператор:
+      input(type="text", id="add-operator", name="operator", required)
+
+      label(for="add-price") Цена:
+      input(type="number", id="add-price", name="price", min="0", required)
+
+      //- label(for="add-types") Типы (через запятую):
+      //- input(type="text", id="add-types", name="types", required)
+      label(for="add-types") Типы тура:
+      select#add-types(name="types[]" multiple required)
+        each type in tourTypes
+          option(value=type) #{type}
+
+      label(for="add-cities") Города (через запятую):
+      input(type="text", id="add-cities", name="cities", required)
+
+      label(for="add-images") Изображения (загрузите файлы):
+      input(type="file", id="add-images", name="add-images", multiple, accept="image/*")
+
+      button#add-tour(type="button") Добавить тур
+    //- Редактирование тура
+    h2 Редактировать тур
+    div
+      label(for="edit-tour-id") Введите ID тура:
+      input(type="text", id="edit-tour-id", placeholder="Введите ID тура", required)
+      button#fetch-tour(type="button") Загрузить тур
+
+    form#edit-tour-form(enctype="multipart/form-data")
+      input(type="hidden", id="edit-tour-id", name="id")
+
+      label(for="edit-name") Название тура:
+      input(type="text", id="edit-name", name="name", required)
+
+      label(for="edit-start_date") Даты начала тура (через запятую):
+      input(type="text", id="edit-start_date", name="start_date", placeholder="YYYY-MM-DD, YYYY-MM-DD", required)
+
+      label(for="edit-duration") Длительность (дней):
+      input(type="number", id="edit-duration", name="duration", min="1", required)
+
+      label(for="edit-short-description") Краткое описание:
+      textarea#edit-short-description(name="short_description", required)
+
+      label(for="edit-long-description") Полное описание (каждая строка - параграф):
+      textarea#edit-long-description(name="long_description", required)
+
+      label(for="edit-operator") Оператор:
+      input(type="text", id="edit-operator", name="operator", required)
+
+      label(for="edit-price") Цена (₽):
+      input(type="number", id="edit-price", name="price", min="0", required)
+
+      label(for="edit-types") Типы тура (через запятую):
+      input(type="text", id="edit-types", name="types", required)
+
+      label(for="edit-cities") Города (через запятую):
+      input(type="text", id="edit-cities", name="cities", required)
+
+      label(for="edit-images") Изображения (загрузите файлы):
+      input(type="file", id="edit-images", name="edit-images", multiple, accept="image/*")
+
+      label(for="edit-visible") Видимый тур:
+      input(type="checkbox", id="edit-visible", name="visible")
+
+
+      button#save-tour(type="button") Сохранить тур
+      button#delete-tour(type="button") Удалить тур

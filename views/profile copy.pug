@@ -1,0 +1,85 @@
+extends layout
+
+block content
+  .user-profile
+    .profile-card
+      form#edit-form(action="/profile" method="POST" enctype="multipart/form-data")
+        img.avatar(src="/img/avatar/" + user.avatar alt="Аватар пользователя")
+
+        label(for="avatar") Изменить аватар:
+        input#avatar(type="file" name="avatar" accept="image/*")
+
+        .info
+          label(for="firstName") Имя:
+          input#firstName(type="text" name="firstName" value=user.firstName required)
+
+          label(for="lastName") Фамилия:
+          input#lastName(type="text" name="lastName" value=user.lastName required)
+
+          label(for="email") Email:
+          input#email(type="email" name="email" value=user.email required)
+
+          label(for="phone") Телефон:
+          input#phone(type="tel" name="phone" value=user.phone required)
+
+          input(type="hidden" name="id" value=user.id)
+
+          button(type="submit") Сохранить изменения
+
+    .user-orders
+      h3 История заказов
+      ul#ordersContainer
+        li(onclick="toggleOrderDetails(this)")
+          | Заказ #12345 - Завершён
+          .order-details
+            .order-slider
+              img(src="order1-image1.jpg" alt="Изображение заказа 1")
+            div.highlight.description Описание: Lorem ipsum dolor sit amet.
+            div.highlight.customer Комментарий клиента: Всё было отлично!
+            div.highlight.admin Комментарий администратора: Спасибо за отзыв!
+
+  link(rel="stylesheet" href="/profile.css")
+  script.
+    function showPopupNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `popup-notification ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.style.opacity = '1';
+            notification.style.transform = 'translateY(0)';
+        }, 10);
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }, 3000);
+    }
+
+    function editField(field) {
+        const currentValue = document.getElementById(`user${field.charAt(0).toUpperCase() + field.slice(1)}`).textContent;
+        const newValue = prompt(`Редактировать ${field}`, currentValue);
+        if (newValue !== null && newValue.trim() !== "") {
+            document.getElementById(`user${field.charAt(0).toUpperCase() + field.slice(1)}`).textContent = newValue;
+            showPopupNotification(`${field.charAt(0).toUpperCase() + field.slice(1)} успешно обновлено!`, 'success');
+        }
+    }
+
+    function editAvatar() {
+        const newAvatar = prompt("Введите URL нового аватара:", "");
+        if (newAvatar !== null && newAvatar.trim() !== "") {
+            document.getElementById("userAvatar").src = newAvatar;
+            showPopupNotification("Аватар успешно обновлён!", 'success');
+        }
+    }
+
+    function toggleOrderDetails(orderElement) {
+        const details = orderElement.querySelector('.order-details');
+        if (details.style.display === 'block') {
+            details.style.display = 'none';
+        } else {
+            details.style.display = 'block';
+        }
+    }

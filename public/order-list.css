@@ -1,0 +1,78 @@
+/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+/* Контейнер с заказами */
+#ordersContainer {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Карточка заказа */
+.order-card {
+    background-color: #ffffff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.order-card h3 {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Стили для текста внутри карточки */
+.order-card p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: #555;
+}
+
+/* Изображения тура */
+.images-container {
+    margin: 10px 0;
+}
+
+.tour-image {
+    width: 100%;
+    height: auto;
+}
+
+/* Кнопка обновления статуса */
+.order-card button {
+    background-color: #f2f2f2;;
+    color: black !important;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.95em;
+    margin-top: 10px;
+}
+
+.order-card button:hover {
+    background-color: #f2f2f2;;
+}
+
+/* Стиль для карточек с активным заказом */
+.order-card {
+    background-color: white;
+    color: black;
+    /* Другие стили */
+  }
+  
+  /* Стиль для карточек с неактивным заказом */
+  .order-card.inactive {
+    background-color: #848484;  /* Темный фон */
+    color: #000000;             /* Светлый текст */
+    opacity: 0.7;            /* Легкая полупрозрачность */
+  }

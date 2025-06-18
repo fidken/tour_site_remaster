@@ -1,0 +1,48 @@
+/* Общие стили для заголовков */
+h1,
+h2 {
+  margin-bottom: 20px;
+}
+
+/* Стили для заголовка страницы */
+#booking-title {
+  font-size: 2em;
+  text-align: center;
+}
+
+/* Стили для заголовков секций */
+#booking-header,
+#payment-header {
+  font-size: 1.5em;
+  margin-top: 30px;
+}
+
+/* Стили для параграфов с шагами бронирования */
+.booking-step {
+  margin-left: 25px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  text-align: justify; /* Выровнять текст по ширине */
+}
+
+/* Стили для изображений */
+.booking-image {
+  display: block;
+  max-width: 70%; /* Максимальная ширина 50% от родительского блока */
+  max-height: 600px; /* Максимальная высота изображения */
+  height: auto; /* Сохранять пропорции изображения */
+  margin: 20px auto; /* Центрирование изображения с отступами сверху и снизу */
+}
+
+/* Стили для информации по оплате */
+.payment-info {
+  margin-left: 25px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  text-align: justify; /* Выровнять текст по ширине */
+}
+
+.num {
+  margin-bottom: 0;
+  padding-bottom: 25px;
+}

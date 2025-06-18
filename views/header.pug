@@ -1,0 +1,23 @@
+// header.pug
+nav
+  ul
+    li: a(href='/') Главная
+    li: a(href="https://www.komilfotur.ru/o-nas.html") О нас
+    li: a(href="/booking") Как забронировать и оплатить
+    if isAuthenticated
+      li: a(href='/cart') Корзина
+      li: a(href='/profile') Профиль
+      li#logoutLink: a(href='/logout') Выход
+      if isAdmin
+        li.dropdown
+          a(href='#', class='dropbtn') Админ
+          .dropdown-content
+            a(href='/admin') Панель администратора
+            a(href='/admin/profiles-edit') Редактирование профилей
+            a(href='/admin/tours-edit') Редактирование туров
+            a(href='/admin/order-list') Список заказов
+        li: a(href='/diagnostic.html') Диагностическая Панель
+    else
+      li: a(href='/login') Вход
+      li: a(href='/registration') Регистрация
+

@@ -1,0 +1,61 @@
+extends layout 
+
+block content 
+    h1 JSON File Downloader
+    #file-container
+      p Loading files...
+    <button id="download-btn">Download Images</button>
+
+    script(src="download-images.js") 
+    script.
+      async function fetchFiles() {
+          const response = await fetch('/files');
+          const files = await response.json();
+          const container = document.getElementById('file-container');
+
+          container.innerHTML = '';
+
+          if (files.length === 0) {
+              container.innerHTML = '<p>No files available</p>';
+              return;
+          }
+
+          const fileList = document.createElement('div');
+          fileList.classList.add('file-list');
+
+          files.forEach(file => {
+              const fileItem = document.createElement('div');
+              fileItem.classList.add('file-item');
+              fileItem.textContent = file;
+
+              const downloadButton = document.createElement('button');
+              downloadButton.textContent = 'Download';
+              downloadButton.onclick = () => downloadFile(file);
+
+              fileItem.appendChild(downloadButton);
+              fileList.appendChild(fileItem);
+          });
+
+          container.appendChild(fileList);
+      }
+
+      async function downloadFile(filename) {
+          const response = await fetch(`/download/${filename}`);
+          if (!response.ok) {
+              alert('Failed to download file');
+              return;
+          }
+
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          a.click();
+
+          window.URL.revokeObjectURL(url);
+      }
+
+      fetchFiles();
+    script(src="/navbar.js", defer)

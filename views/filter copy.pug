@@ -1,0 +1,151 @@
+div(id="filter-container")
+  h3 Поиск тура в Калининградской области
+  form(id="filter-form")
+    // Фильтр по дате начала тура
+    div(class="filter-group")
+      label(for="start-date") Дата начала тура:
+      input(type="date" id="start-date" name="start_date")
+
+    // Фильтр по длительности тура
+    div(class="filter-group")
+      label(for="duration") Длительность (в днях):
+      input(type="number" id="duration" name="duration" placeholder="Например, 7")
+
+    // Фильтр по типу тура
+    div(class="filter-group")
+      label(for="types") Тип тура:
+      select(id="types" name="types" multiple)
+        each type in tourTypes
+          option(value=type) #{type}
+
+    // Фильтр по диапазону цен
+    div(class="filter-group")
+      label(for="price-range") Диапазон цен:
+      input(type="number" id="price-min" name="price_min" placeholder="Мин. цена")
+      input(type="number" id="price-max" name="price_max" placeholder="Макс. цена")
+
+    // Кнопки управления фильтрацией
+    div(class="filter-actions")
+      button(type="button" id="apply-filters") Применить фильтры
+      button(type="reset" id="reset-filters") Сбросить
+
+    // Ошибки и уведомления
+    //- div(id="filter-errors" class="filter-errors")
+    //- div(id="filter-no-results" class="filter-no-results hidden") Ничего не найдено.
+
+// Встроенный скрипт для фильтрации
+script.
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterForm = document.getElementById('filter-form');
+    const tourCards = document.querySelectorAll('.tour-card');
+    const errorsContainer = document.getElementById('filter-errors');
+    const noResultsContainer = document.getElementById('filter-no-results');
+
+    document.getElementById('apply-filters').addEventListener('click', () => {
+      const errors = [];
+      let filteredCount = 0;
+
+      // Получение значений фильтров
+      const startDateInput = document.getElementById('start-date').value;
+      const duration = document.getElementById('duration').value;
+      const selectedTypes = Array.from(document.getElementById('types').selectedOptions).map(option => option.value);
+      const priceMin = document.getElementById('price-min').value;
+      const priceMax = document.getElementById('price-max').value;
+
+      console.log("Фильтры введены:");
+      console.log("Дата начала:", startDateInput);
+      console.log("Длительность:", duration);
+      console.log("Типы:", selectedTypes);
+      console.log("Цена (мин):", priceMin);
+      console.log("Цена (макс):", priceMax);
+
+      //- // Проверка ошибок
+      //- if (priceMin && priceMax && parseFloat(priceMin) > parseFloat(priceMax)) {
+      //-   errors.push('Минимальная цена не может быть больше максимальной.');
+      //- }
+
+      //- // Вывод ошибок
+      //- errorsContainer.innerHTML = '';
+      //- if (errors.length > 0) {
+      //-   errors.forEach(error => {
+      //-     const errorElement = document.createElement('div');
+      //-     errorElement.textContent = error;
+      //-     errorsContainer.appendChild(errorElement);
+      //-   });
+      //-   console.log("Ошибки фильтрации:", errors);
+      //-   return;
+      //- }
+
+      //- // Скрываем сообщения об ошибках и "ничего не найдено"
+      //- errorsContainer.innerHTML = '';
+      //- noResultsContainer.classList.add('hidden');
+
+      // Фильтрация карточек
+      tourCards.forEach((card) => {
+        const tourId = card.dataset.tourId - 1;
+        const tours = JSON.parse(localStorage.getItem('tours')) || [];
+        const tour = tours[tourId];
+
+        console.log("Текущий тур:", tour);
+
+        let matches = true;
+
+        // Проверка даты начала тура
+        if (startDateInput) {
+            const inputDate = new Date(startDateInput); // Форматируем ввод
+            const tourDate = new Date(tour.start_date); // Форматируем дату из данных
+
+            console.log("Дата из фильтра:", inputDate, "Дата тура:", tourDate);
+
+            // Сравнение дат: они должны быть равны
+            if (inputDate.getTime() !== tourDate.getTime()) {
+                console.log("Даты не совпадают, исключается.");
+                matches = false;
+            }
+        }
+
+
+        // Проверка длительности
+        if (duration) {
+          console.log("Длительность тура:", tour.duration, "Фильтр:", duration);
+          if (tour.duration != duration) matches = false;
+        }
+
+        // Проверка типов тура
+        if (selectedTypes.length > 0) {
+          console.log("Типы тура:", tour.types, "Фильтр:", selectedTypes);
+          if (!selectedTypes.some(type => tour.types.includes(type))) matches = false;
+        }
+
+        // Проверка цены
+        if (priceMin) {
+          console.log("Минимальная цена фильтра:", priceMin, "Цена тура:", tour.price);
+          if (tour.price < parseFloat(priceMin)) matches = false;
+        }
+        if (priceMax) {
+          console.log("Максимальная цена фильтра:", priceMax, "Цена тура:", tour.price);
+          if (tour.price > parseFloat(priceMax)) matches = false;
+        }
+
+        card.style.display = matches ? '' : 'none';
+        if (matches) filteredCount++;
+      });
+
+      // Если ничего не найдено
+      if (filteredCount === 0) {
+        console.log("Фильтрация завершена, ничего не найдено.");
+        noResultsContainer.classList.remove('hidden');
+      } else {
+        console.log("Фильтрация завершена, найдено туров:", filteredCount);
+      }
+    });
+
+    document.getElementById('reset-filters').addEventListener('click', () => {
+      console.log("Сброс фильтров.");
+      tourCards.forEach(card => card.style.display = '');
+      errorsContainer.innerHTML = '';
+      noResultsContainer.classList.add('hidden');
+    });
+  });
+
+

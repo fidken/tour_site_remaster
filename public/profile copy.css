@@ -1,0 +1,271 @@
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+#profileSection {
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#userInfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#userAvatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    object-fit: cover;
+}
+
+#userName {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+#userInfo p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #777;
+}
+
+button {
+    padding: 12px 24px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#ordersHistory h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+}
+
+#ordersContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.order:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.order p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 15px;
+}
+
+.order .order-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: #333;
+}
+
+.order .order-status {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.order .order-date {
+    color: #777;
+    font-size: 14px;
+} */
+
+
+
+.popup-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    min-width: 200px;
+    padding: 15px;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+    color: white;
+    font-size: 16px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popup-notification.success {
+    background-color: #4CAF50; /* Green */
+}
+
+.popup-notification.error {
+    background-color: #F44336; /* Red */
+}
+
+.popup-notification.warning {
+    background-color: #FFC107; /* Yellow */
+    color: #333;
+}
+
+.popup-notification.info {
+    background-color: #2196F3; /* Blue */
+}
+
+/* User Profile Styles */
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 8px; */
+    padding: 20px;
+    /* max-width: 400px; */
+    margin: 20px auto;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    position: relative;
+}
+
+.user-profile .user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+.user-profile .user-info .label {
+    font-weight: bold;
+}
+
+.user-profile .user-info .edit-btn {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-profile .user-avatar {
+    text-align: center;
+}
+
+.user-avatar {
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.user-avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.user-avatar img:hover {
+    transform: scale(1.05);
+}
+
+.user-avatar button.edit-btn {
+    display: none; /* Скрываем кнопку смены аватара */
+}
+
+
+.user-profile .user-avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-profile .user-orders {
+    margin-top: 20px;
+}
+
+.user-profile .user-orders h3 {
+    margin-bottom: 10px;
+}
+
+.user-profile .user-orders ul {
+    list-style: none;
+    padding: 0;
+}
+
+.user-profile .user-orders li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.user-profile .user-orders li:hover {
+    background-color: #f1f1f1;
+}
+
+.user-profile .order-details {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.order-details .order-slider {
+    margin-bottom: 10px;
+}
+
+.order-details .order-slider img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.order-details .highlight {
+    font-weight: bold;
+    padding: 5px;
+}
+
+.order-details .highlight.customer {
+    background-color: #d9edf7;
+}
+
+.order-details .highlight.admin {
+    background-color: #dff0d8;
+}
+
+.order-details .highlight.description {
+    background-color: #fcf8e3;
+}

@@ -1,0 +1,45 @@
+/* Стили для Header */
+header {
+    color: white;             /* Цвет текста внутри main */
+    position: relative;       /* Фиксируем на верхней части страницы */
+    top: 0;                /* Прикрепляем к верхнему краю */
+    left: 50%;             /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Сдвигаем на 50% его ширины, чтобы центр был точно в середине */
+    width: 1000px;         /* Ширина совпадает с шириной main */
+    /* height: 50px; */
+    background-color: rgb(231, 101, 161);
+    z-index: 10;           /* Поверх содержимого main */
+}
+
+/* Стили для Body */
+body {
+    background-color: #eeeeee; /* Фон для всей страницы */
+    overflow-x: hidden;       /* Убираем горизонтальную прокрутку */
+    text-align: center;      
+     /* Центрирование текста в body */
+     font-family: 'Roboto Condensed', sans-serif; /* Применяем шрифт Roboto Condensed */
+}
+
+footer {
+    background-color: rgb(64, 175, 100); /* Цвет фона */
+    width: 1000px;
+    padding: 20px; /* Внутренний отступ */
+    text-align: center; /* Центрирование текста */
+    font-size: 14px; /* Размер шрифта */
+    position: relative;
+    left: 50%;             /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Сдвигаем на 50% его ширины, чтобы центр был точно в середине */
+}
+
+/* Стили для Main */
+main {
+    width: 1000px;            /* Ширина main */
+    margin: 0 auto 0;      /* Отступ сверху равен высоте header, центрирование по горизонтали */
+    background-color: white;   /* Фон для main */
+    box-sizing: border-box;   /* Учитываем padding в ширине и высоте */
+    min-height: calc(100vh - 35px); /* Минимальная высота, чтобы покрыть экран за вычетом header */
+}
+
+* {
+    font-family: 'Roboto Condensed', sans-serif; /* Применяем шрифт Roboto Condensed для заголовков */
+}

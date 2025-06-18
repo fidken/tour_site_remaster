@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .diagnostic-panel {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .diagnostic-panel h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .entry {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fafafa;
+        }
+
+        .entry pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .actions .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .actions .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .add-entry {
+            margin-bottom: 20px;
+        }
+
+        .add-entry input, .add-entry textarea {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .add-entry button {
+            display: block;
+            width: 100%;
+            background-color: #2196F3;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Popup Notification Styles */
+        .popup-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            min-width: 200px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 16px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .popup-notification.success {
+            background-color: #4CAF50; /* Green */
+        }
+
+        .popup-notification.error {
+            background-color: #F44336; /* Red */
+        }
+
+        .popup-notification.warning {
+            background-color: #FFC107; /* Yellow */
+            color: #333;
+        }
+
+        .popup-notification.info {
+            background-color: #2196F3; /* Blue */
+        }
+    </style>
+    <script src="popup.js"></script>
+</head>
+<body>
+
+<div class="diagnostic-panel">
+    <h1>Diagnostic Panel</h1>
+    <div class="add-entry">
+        <h3>Add to localStorage</h3>
+        <input type="text" id="key" placeholder="Key">
+        <textarea id="value" placeholder="Value"></textarea>
+        <button onclick="addToLocalStorage()">Add Entry</button>
+    </div>
+
+    <div id="entries">
+        <!-- Dynamic entries will be populated here -->
+    </div>
+</div>
+
+<script>
+    function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+function formatJSON(value) {
+    return JSON.stringify(JSON.parse(value), null, 2);
+}
+
+function addToLocalStorage() {
+    const key = document.getElementById('key').value;
+    const value = document.getElementById('value').value;
+
+    if (key && value) {
+        if (isValidJSON(value)) {
+            const formattedValue = formatJSON(value);
+            localStorage.setItem(key, formattedValue);
+            showPopupNotification(`Key "${key}" added/updated in localStorage.`, 'success');
+        } else {
+            localStorage.setItem(key, value);
+            showPopupNotification(`Key "${key}" added/updated as plain text.`, 'info');
+        }
+        renderEntries();
+    } else {
+        showPopupNotification('Key and value cannot be empty', 'error');
+    }
+}
+
+function editEntry(key) {
+    const currentValue = localStorage.getItem(key);
+    const newValue = prompt('Edit value:', currentValue);
+    if (newValue !== null) {
+        if (isValidJSON(newValue)) {
+            const formattedValue = formatJSON(newValue);
+            localStorage.setItem(key, formattedValue);
+            showPopupNotification(`Key "${key}" updated as formatted JSON.`, 'success');
+        } else {
+            localStorage.setItem(key, newValue);
+            showPopupNotification(`Key "${key}" updated as plain text.`, 'info');
+        }
+        renderEntries();
+    }
+}
+
+function renderEntries() {
+    const entriesDiv = document.getElementById('entries');
+    entriesDiv.innerHTML = '';
+    Object.keys(localStorage).forEach(key => {
+        const value = localStorage.getItem(key);
+        const isJSON = isValidJSON(value);
+        const entryDiv = document.createElement('div');
+        entryDiv.className = 'entry';
+        entryDiv.innerHTML = `
+            <pre><strong>${key}:</strong> ${isJSON ? JSON.stringify(JSON.parse(value), null, 2) : value}</pre>
+            <div class="actions">
+                ${isJSON ? `<button class="edit-btn" onclick="openJSONViewer('${key}')">View JSON</button>` : ''}
+                <button class="edit-btn" onclick="editEntry('${key}')">Edit</button>
+                <button class="delete-btn" onclick="deleteEntry('${key}')">Delete</button>
+            </div>
+        `;
+        entriesDiv.appendChild(entryDiv);
+    });
+}
+
+function openJSONViewer(key) {
+    const value = localStorage.getItem(key);
+    try {
+        const parsedValue = JSON.parse(value);
+        const newWindow = window.open("", "_blank");
+        newWindow.document.write("<html><head><title>JSON Viewer</title></head><body>");
+        newWindow.document.write(`<pre>${JSON.stringify(parsedValue, null, 2)}</pre>`);
+        newWindow.document.write("</body></html>");
+        newWindow.document.close();
+    } catch (e) {
+        alert("The value is not valid JSON!");
+    }
+}
+
+function deleteEntry(key) {
+    if (confirm(`Are you sure you want to delete ${key}?`)) {
+        localStorage.removeItem(key);
+        showPopupNotification(`Key "${key}" removed from localStorage.`, 'warning');
+        renderEntries();
+    }
+}
+
+// Initial render
+renderEntries();
+</script>
+
+
+
+</body>
+</html>

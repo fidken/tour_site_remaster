@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  form {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sticker-container {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+  }
+  
+  .sticker {
+    background-color: #f9f9a1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 300px;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    white-space: pre-wrap; /* Сохранение отступов и переносов */
+    font-family: monospace; /* Моноширинный шрифт для JSON */
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: left;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  

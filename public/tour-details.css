@@ -1,0 +1,159 @@
+/* Стили для текстовых блоков */
+.tour-page #title, 
+.tour-page #start_date, 
+.tour-page #duration, 
+.tour-page #price, 
+.tour-page #long_description {
+    margin: 10px 0; /* Отступы между элементами */
+    padding: 0 20px; /* Горизонтальные отступы от краёв */
+    text-align: left; /* Выравнивание текста по левому краю */
+    line-height: 1.6; /* Межстрочный интервал для читаемости */
+}
+
+.tour-page #title {
+    font-size: 2em; /* Размер заголовка */
+    font-weight: bold; /* Жирный текст */
+    line-height: 1.4; /* Более плотный межстрочный интервал для заголовка */
+}
+.tour-page p {
+    padding: 0 35px;
+}
+
+
+h2 {
+    margin-left: 20px;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.tour-page #start_date, 
+.tour-page #duration, 
+.tour-page #price, 
+.tour-page #long_description {
+    font-size: 1em; /* Стандартный размер текста */
+    color: #555; /* Цвет текста для дополнительной информации */
+    line-height: 1.8; /* Более свободный межстрочный интервал */
+}
+
+/* Стили для списков */
+.tour-page ul.city-list, 
+.tour-page ul.type-list {
+    text-align: left;
+    list-style-type: disc; /* Стандартные маркеры */
+    margin-left: 20px; /* Отступ слева */
+    padding-left: 20px; /* Внутренний отступ */
+    line-height: 1.8; /* Межстрочный интервал для списков */
+}
+
+.tour-page ul.city-list li, 
+.tour-page ul.type-list li {
+    margin-bottom: 5px; /* Отступ между пунктами */
+    color: #333; /* Цвет текста */
+    font-size: 1em; /* Размер текста */
+    line-height: 1.6; /* Межстрочный интервал для пунктов списка */
+}
+
+/* Стили для кнопок */
+.tour-page button {
+    background-color: rgb(64, 175, 100);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px; /* Закругление */
+    cursor: pointer;
+    
+  margin-bottom: 10px;
+    width: auto; /* Исправлено растяжение кнопок */
+    display: inline-block; /* Изменено с block на inline-block */
+    margin-top: 20px; /* Отступ сверху */
+    text-align: center; /* Центрирование текста внутри кнопки */
+    line-height: 1.4; /* Межстрочный интервал внутри кнопок */
+}
+
+.tour-page button:hover {
+    background-color: #1c7430; /* Более тёмный зелёный при наведении */
+}
+
+/* Стили для слайдера */
+.tour-page .slider-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 8px 8px;
+    height: 400px; /* Увеличенная высота для страницы тура */
+    margin-bottom: 20px;
+}
+
+.tour-page .slider-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.tour-page .slider-container img.active {
+    opacity: 1;
+    position: relative;
+}
+
+.tour-page .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s;
+}
+
+
+
+/* Слайдер кнопки */
+.tour-page .slider-btn#prev {
+    left: 20px; /* Расстояние от левого края */
+}
+
+.tour-page .slider-btn#next {
+    right: 20px; /* Расстояние от правого края */
+}
+
+/* Мобильная адаптация */
+@media (max-width: 600px) {
+    .tour-page .slider-btn {
+        font-size: 1em;
+        padding: 8px; /* Меньшие кнопки для мобильных устройств */
+    }
+
+    .tour-page .slider-container {
+        margin: 5px 0;
+ 
+    }
+}
+
+p#long_description {
+    
+}
+.dates-container {
+    display: flex;
+    margin: 0 35px;
+    flex-wrap: wrap;
+    gap: 5px; /* Добавляет промежутки между датами */
+  }
+  
+  .date-item {
+    white-space: nowrap; /* Запрещает перенос текста в ячейке */
+    padding: 0 5px; /* Добавляет отступы вокруг каждой даты */
+  }
+  
+  .tour-page p {
+    text-align: left;
+}
+  
+
+.tour-page .slider-container {
+    border: none; /* Убираем границу у родительского div */
+}

@@ -1,0 +1,89 @@
+nav {
+  position: relative; /* Или absolute/fixed в зависимости от ваших требований */
+  background-color: rgb(231, 101, 161);
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+  z-index: 9999;
+}
+
+
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  nav ul li {
+    margin: 0 15px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  nav ul li a:hover {
+    /* background-color: rgba(231, 101, 161, 0.5); */
+    color: #eeeeee;
+  }
+  
+  nav ul li#logoutLink a {
+    /* font-weight: bold; */
+    /* color: #ff4d4d; */
+  }
+  
+  nav ul li#logoutLink a:hover {
+    /* background-color: #ff4d4d; */
+    color: #eeeeee;
+  }
+  
+  nav ul li.dropdown {
+    position: relative;
+  }
+  
+  nav ul li.dropdown .dropbtn {
+    background-color: rgb(231, 101, 161);
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  nav ul li.dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    background-color: rgb(231, 101, 161);
+    min-width: 150px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+    z-index: 1;
+  }
+  
+  nav ul li.dropdown .dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  nav ul li.dropdown .dropdown-content a:hover {
+    /* background-color: #555; */
+    color: #eeeeee;
+  }
+  
+  nav ul li.dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  nav ul li.dropdown:hover .dropbtn {
+    /* background-color: #555; */
+    color: #eeeeee;
+  }
+  

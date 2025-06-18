@@ -1,0 +1,78 @@
+extends layout 
+
+block content
+  #profile-management
+    h1 Управление пользователями
+
+    //- Добавление пользователя
+    h2 Добавить пользователя
+  form#add-user-form
+    label(for="add-firstName") Имя:
+    input(type="text" id="add-firstName" name="first_name")
+
+    label(for="add-lastName") Фамилия:
+    input(type="text" id="add-lastName" name="last_name")
+
+    label(for="add-email") Электронная почта:
+    input(type="email" id="add-email" name="email")
+
+    label(for="add-phone") Телефон:
+    input(type="text" id="add-phone" name="phone")
+
+    label(for="add-password") Пароль:
+    input(type="password" id="add-password" name="password")
+
+    label(for="add-avatar") Аватар:
+    input(type="file" id="add-avatar" name="avatar" accept="image/*")
+
+    label(for="add-admin") Администратор:
+    input(type="checkbox" id="add-admin" name="admin")
+
+    button#add-user(type="button") Добавить пользователя
+
+  //- Редактирование пользователя
+  h2 Редактировать пользователя
+  div
+    label(for="edit-user-id") Введите ID пользователя:
+    input(type="text" id="edit-user-id" placeholder="Введите ID пользователя")
+    button#fetch-user(type="button") Загрузить пользователя
+
+  form#edit-user-form
+    input(type="hidden", id="edit-user-id", name="id")
+
+    label(for="edit-first-name") Имя:
+    input(type="text" id="edit-first-name" name="first_name")
+
+    label(for="edit-last-name") Фамилия:
+    input(type="text" id="edit-last-name" name="last_name")
+
+    label(for="edit-email") Электронная почта:
+    input(type="email" id="edit-email" name="email")
+
+    label(for="edit-phone") Телефон:
+    input(type="text" id="edit-phone" name="phone")
+
+    label(for="edit-password") Пароль:
+    input(type="password" id="edit-password" name="password")
+
+    label(for="edit-avatar") Аватар:
+    input(type="file" id="edit-avatar" name="avatar" accept="image/*")
+
+    label(id="edit-admin-label" for="edit-admin") Администратор:
+    input(type="checkbox" id="edit-admin" name="admin")
+
+    button#save-user(type="button") Сохранить пользователя
+    button#delete-user(type="button") Удалить пользователя
+
+
+    //- Список пользователей
+    h2 Список пользователей
+    #usersContainer
+      //- each user in users
+      //-   .profile
+      //-     img(src="/img/avatar/" + user.avatar alt=`Аватар ${user.first_name} ${user.last_name}`)
+      //-     p Имя: #{user.first_name}
+      //-     p Фамилия: #{user.last_name}
+      //-     p Электронная почта: #{user.email}
+      //-     p Телефон: #{user.phone}
+      //-     p Администратор: #{user.admin ? "Да" : "Нет"}

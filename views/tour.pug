@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  div(class="tour-page")
+    div(class="slider-container")
+      each image, index in tour.images
+        img(src=`/img/tour/${image}` alt=`${tour.name} - ${index + 1}` class=`slide ${index === 0 ? 'active' : ''}`)
+      button(class="slider-btn" id="prev" onclick='showSlide(this.parentElement, -1)') ‹
+      button(class="slider-btn" id="next" onclick='showSlide(this.parentElement, 1)') ›
+    
+    h1#title= tour.name
+    p#start_date
+      strong Дата начала:
+      .dates-container
+        each date, index in tour.start_date
+          .date-item
+            | #{date === 'Ежедневно' ? 'Ежедневно' : formatDate(date)}
+            if index < tour.start_date.length - 1
+              | ,
+    p#duration
+      strong Длительность:
+      | #{tour.duration} дней
+    p#price
+      strong Цена:
+      | #{tour.price} ₽
+    //- p#short_description= tour.short_description
+    p#long_description
+      strong Описание:
+      each paragraph in tour.long_description
+        p= paragraph
+        br
+
+    if tour.cities.length
+      h2 Города посещения:
+      ul.city-list
+        each city in tour.cities
+          li= city
+
+    if tour.types.length
+      h2 Типы тура:
+      ul.type-list
+        each type in tour.types
+          li= type
+
+    button(class="action-button add-to-cart") Добавить в корзину

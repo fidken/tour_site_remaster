@@ -1,0 +1,102 @@
+/* Контейнер с профилями */
+#usersContainer {
+    display: flex;
+    flex-wrap: wrap; /* Обёртка для карточек */
+    justify-content:flex-start; /* Равномерное распределение карточек */
+    
+    gap: 20px; /* Расстояние между карточками */
+    padding: 20px; /* Внутренние отступы */
+    background-color: #f5f5f5; /* Фон */
+    border-radius: 5px; /* Скругление краёв */
+    box-sizing: border-box; /* Учитывать отступы в размерах */
+}
+
+/* Карточка пользователя */
+.user-card {
+    flex: 1 1 calc(25% - 20px); /* Карточка занимает 25% пространства с учётом gap */
+    max-width: 300px; /* Максимальная ширина */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Заголовок с именем пользователя */
+.user-card h2 {
+    font-size: 1.4em;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+/* Кнопка для отображения деталей */
+.user-card .toggle-details {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-card .toggle-details:hover {
+    background-color: #0056b3;
+}
+
+/* Скрытые детали пользователя */
+.user-card .user-details {
+    display: none; /* По умолчанию скрыто */
+    margin-top: 15px;
+    text-align: left;
+}
+
+/* Список деталей пользователя */
+.user-card .user-details p {
+    margin: 8px 0;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.user-card .user-details p strong {
+    color: #333;
+}
+
+/* Изображение аватара */
+.user-card .user-avatar {
+    display: block;
+    width: 100px; /* Размер изображения */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 15px auto 10px;
+    border: 3px solid #f2f2f2;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для чекбокса */
+input[type="checkbox"] {
+    width: 20px; /* Ширина чекбокса */
+    height: 20px; /* Высота чекбокса */
+    cursor: pointer; /* Указатель при наведении */
+    background-color: red
+}
+
+/* Дополнительные стили для чекбокса (опционально) */
+input[type="checkbox"]:checked {
+    background-color: greenyellow; /* Цвет фона при проверке */
+    border: 2px solid #007BFF; /* Цвет границы при проверке */
+}
+
+/* Стили для состояния чекбокса при наведении */
+input[type="checkbox"]:hover {
+    border: 2px solid #0056b3; /* Цвет границы при наведении */
+}

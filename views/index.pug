@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  img(src="comilfo-banner.jpg" id="comilfo-banner")
+  include filter.pug
+  div(id="tour-container")
+    each tour in tours
+      div(class="tour-card" data-tour-id=tour.id)
+        div(class="slider-container")
+          each image, imgIndex in tour.images
+            img(src=('/img/tour/' + image + '?v=' + Date.now()), alt=('Тур ' + tour.name), class=("slide" + (imgIndex === 0 ? ' active' : '')))
+          button(class="slider-btn", id="prev", onclick="showSlide(this.parentElement, -1)") ‹
+          button(class="slider-btn", id="next", onclick="showSlide(this.parentElement, 1)") ›
+        h2= tour.name
+        p
+          strong Даты начала: 
+          | #{tour.start_date[0] === 'Ежедневно' ? 'Ежедневно' : formatDate(tour.start_date[0])} 
+          //- | #{tour.start_date.map(formatDate).join(', ')}
+        p
+          strong Длительность: 
+          | #{tour.duration} день#{tour.duration > 1 ? 'я' : ''}
+        p
+          strong Города: 
+          | #{tour.cities.join(', ')}
+        p
+          strong Цена: 
+          | #{tour.price} ₽
+        p
+          strong Описание: 
+          | #{tour.short_description}
+        a.tour-link(href=('/tour/' + tour.id)) Подробнее
+        button(class="add-to-cart", onclick="addToCart(#{tour.id})") Добавить в корзину

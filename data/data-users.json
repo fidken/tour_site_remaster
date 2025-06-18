@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "first_name": "Божественный",
+    "last_name": "Администратор",
+    "phone": "+7 (987) 654-3210",
+    "password": "admin",
+    "email": "admin@admin.admin",
+    "orders": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "1",
+      "2",
+      "3",
+      "1",
+      "2",
+      "3"
+    ],
+    "admin": true,
+    "avatar": "user1.jpg"
+  },
+  {
+    "id": 2,
+    "first_name": "Злобная",
+    "last_name": "Печенька",
+    "phone": "+7 (987) 654-3210",
+    "password": "cookie",
+    "email": "cookie@cookie.cookie",
+    "orders": [],
+    "admin": false,
+    "avatar": "user2.jpg"
+  },
+  {
+    "id": 3,
+    "first_name": "Койси",
+    "last_name": "Комейдзи",
+    "phone": "+7 (800) 555-3535",
+    "password": "koishi",
+    "email": "dayzmob@bk.ru",
+    "orders": [],
+    "admin": false,
+    "avatar": "user3.jpg"
+  }
+]

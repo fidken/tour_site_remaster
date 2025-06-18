@@ -1,0 +1,43 @@
+extends layout
+
+block content
+    h1 Вход
+    form#loginForm
+        label(for='email') Email:
+        input(type='email', id='email', name='email')
+        br
+        label(for='password') Пароль:
+        input(type='password', id='password', name='password')
+        br
+        button(type='submit') Войти
+    p Нет аккаунта? 
+        a(href='registration') Регистрация
+    script.
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Останавливаем стандартную отправку формы
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            console.log(email, password);
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                if (response.ok) {
+                    // Успешный вход
+                    window.location.href = '/'; // Редирект на главную страницу
+                } else {
+                    // Ошибка входа
+                    const error = await response.text();
+                    alert(error || 'Ошибка входа');
+                }
+            } catch (err) {
+                console.error('Ошибка:', err);
+                alert('Ошибка отправки запроса');
+            }
+        });

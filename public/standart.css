@@ -1,0 +1,49 @@
+/* Удаление отступов, полей и box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Удаление стилей для списка */
+  ol, ul {
+    list-style: none;
+  }
+  
+  /* Удаление стилей ссылок */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Обнуление стилей таблиц */
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  /* Удаление стилей для изображений */
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Удаление шрифта по умолчанию */
+  body {
+    font-family: sans-serif; /* Можно заменить на любой другой */
+  }
+  
+  /* Удаление стилей для форм */
+  button, input, select, textarea {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    appearance: none;
+  }
+
+
+  

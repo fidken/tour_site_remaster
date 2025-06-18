@@ -1,0 +1,80 @@
+/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+/* Контейнер с турами */
+#toursContainer {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Карточка тура */
+.tour-card {
+    background-color: #ffffff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    text-align: left;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tour-card:hover {
+    transform: scale(1.02);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+}
+
+.tour-card h3 {
+    margin-top: 10px;
+    font-size: 1.5em; /* Увеличенный размер заголовка */
+    color: #333;
+}
+
+/* Стили для текста внутри карточки */
+.tour-card p {
+    margin: 5px 0;
+    font-size: 1em; /* Увеличенный размер текста */
+    color: #555;
+}
+
+/* Изображения тура */
+.images-container {
+    margin: 10px 0;
+}
+
+.tour-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px; /* Закругленные углы для изображений */
+}
+
+/* Кнопка добавления тура в корзину */
+.tour-card button {
+    background-color: #28a745; /* Зеленый фон */
+    color: white; /* Белый текст */
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em; /* Размер текста кнопки */
+    margin-top: 10px;
+    border-radius: 5px; /* Закругленные углы для кнопки */
+    transition: background-color 0.3s;
+}
+
+.tour-card button:hover {
+    background-color: #218838; /* Темнее при наведении */
+}
+
+/* Стиль для карточек с неактивным туром */
+.tour-card.inactive {
+    background-color: #848484; /* Темный фон */
+    color: #ffffff; /* Светлый текст */
+    opacity: 0.7; /* Легкая полупрозрачность */
+}
